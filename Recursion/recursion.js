@@ -56,3 +56,34 @@ function computeFactorial (num) {
 }
 
 computeFactorial(5);
+
+// Recursive reverse
+let recursiveReverse = function (arr) {
+  let reversedArray = [];
+  let addItems = function (items) {
+    if (items.length > 0) {
+      reversedArray.push(items.pop());
+      addItems(items);
+    }
+    return;
+  }
+  addItems(arr);
+  return reversedArray;
+}
+
+recursiveReverse([1, 2, 3, 4, 5]);
+// [5, 4, 3, 2, 1]
+
+// Multiplier recursion reverse [1, 2, 3], 3 => [3, 6, 9]
+
+let multiplierReverse = function (arr, num) {
+  if (arr.length === 0) {
+    return arr;
+  }
+  let last = arr.pop();
+  multiplierReverse(arr, num);
+  arr.push(last * num);
+  return arr;
+}
+
+multiplierReverse([1,2,3], 3);
