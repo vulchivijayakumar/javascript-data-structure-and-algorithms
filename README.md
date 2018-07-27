@@ -2,12 +2,16 @@
 
 Learning JavaScripit Data Structure and Algorithms
 
-Note: No definings included. Only practiced programms included in this repo for reference/re-call myself.
+Note: No definitions included. Only practiced programms included in this repo for reference/re-call myself.
 
-Reference url: https://github.com/vijayvulchi/algoClass
+Content:
 
-Index
-
-1. Classes
+1. Class
 2. Stacks
 3. Queues
+4. Recursion
+5. Time Complexity - Big O
+6. Elementary Sorting
+
+
+Reference url: https://github.com/vijayvulchi/algoClass
