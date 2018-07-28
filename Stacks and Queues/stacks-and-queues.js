@@ -1,12 +1,10 @@
 /*
   # Data Structures
-  All about Stacks and Queues
+  All about Stacks
   1. Stacks
   2. Stacks Interface
   3. Implementing a Stack
-  4. Queues
-  5. Creating Stacks and Queues
-  6. Creating Stacks and Queues solutions
+  4. MinStack
 */
 
 /*
@@ -44,71 +42,83 @@ myTodos.pop(); // remove last string i.e 'Take a breakfast';
 myTodos.pop(); // remove last string i.e 'Pick up friend';
 myTodos.size(); // size of the string includes $$$
 
-// Practice: Instead of string use object. then  array if you have time.
- 
-/*
-  Queues - FirstIn and FirstOut (FIFO) - Array
-  first item enqueued - added into the queue
-  first item dequeued - taken out of the queue
-  1. Storage // Constructor Function
-  2. enqueue() // Methods
-  3. dequeue()
-  4. Size()
-  We are using object now
-*/
+// Practice Instead of string use object. then array if you have time.
 
-function Queue(capacity) {
-  this.capaticy = capacity || Infinity;
-  this.storage = {};
-  this.head = 0; // starting point
-  this.tail = 0; // ending point
+function myStack(capacity) {
+  this._capacity = capacity || Infinity;
+  this._storage = {};
+  this._count = 0;
 }
 
-Queue.prototype.enqueue = function (value) {
-  if (this.count() < this.capaticy) {
-    this.storage[this.tail++] = value;
-    return this.count();
+myStack.prototype.push = function (value) {
+  if (this._count < this._capacity) {
+    this._storage[this._count++] = value;
+    return this._count;
   }
   return 'Max capacity already reached. Remove element before adding a new one.';
 }
 
-Queue.prototype.dequeue = function () {
-  let ele = this.storage[this.head];
-  delete this.storage[this.head];
-  if (this.head < this.tail) this.head++;
-  return ele;
-}
-
-Queue.prototype.peek = function () { // first element
-  return this.storage[this.head];
-}
-
-Queue.prototype.count = function () {
-  return this.tail - this.head;
-}
-
-Queue.prototype.contains = function (value) {
-  for (let i = this.head; i < this.tail; i++) {
-    if (this.storage[i] === value) return true;
+myStack.prototype.pop = function () {
+  let value = this.storage[this._count];
+  delete this._storage[this._count];
+  if (this._count < 0) {
+    this._count = 0;
   }
-  return false;
 }
 
-Queue.prototype.until = function (value) {
-  for (let i = this.head; i < this.tail; i++) {
-    if (this.storage[i] === value) return i - this.head + 1;
+myStack.prototype.peek = function() {
+  return this._storage[this._count - 1];
+}
+
+myStack.prototype.count = function() {
+  return this._count;
+};
+
+// minStack - minimum value in a Stack
+function minStack(capacity) {
+  this._capacity = capacity;
+  this._storage = {};
+  this._count = 0;
+  this._min = new myStack(capacity);
+}
+
+minStack.prototype.push = function (value) {
+  if(this._count < this._capacity) {
+    if (this._min.peek() < value) {
+      this._min.push(this._min.peek());
+    } else {
+      this._min.push(value);
+    }
+    this._storage[this._count++] = value;
+    return this._count;
   }
-  return null;
+  return 'Max capacity already reached. Remove element before adding a new one.';
 }
 
-let myQueue = new Queue(5);
-myQueue.enqueue('vijay');
-myQueue.enqueue(1);
-myQueue.enqueue('kumar');
+minStack.prototype.pop = function () {
+  this._min.pop();
+  let value = this._storage[--this._count];
+  delete this._storage[this._count];
+  if (this._count < 0) {
+    this._count = 0;
+  }
+  return value;
+}
 
-myQueue.peek(); // vijay
-myQueue.count(); // 3
-myQueue.contains('vijay'); // true
-myQueue.until(1); // location 2
-myQueue.dequeue(); // removes peek element that is vijay.
+minStack.prototype.peek = function () { // peek means last element
+  return this._storage[this._count-1];
+}
 
+minStack.prototype.count = function() {
+  return this._count;
+};
+
+minStack.prototype.min = function() {
+  return this._min.peek();
+};
+
+let myMinStack = new minStack(3);
+
+myMinStack.push(8);
+myMinStack.push(4);
+myMinStack.push(2);
