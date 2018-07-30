@@ -8,7 +8,6 @@
  * Selects the first element in an array and pushes it into a new array. As
  * each new element is added , insert the new element in the correct order
  * Way 1: without creating new array
- * [9, 6, 8, 2, 5, 1] - original array
  * [9, 6, 8, 2, 5, 1] - swap 9, 6
  * [6, 9, 8, 2, 5, 1] - swap 9, 8
  * [6, 8, 9, 2, 5, 1] - swap 2, 9

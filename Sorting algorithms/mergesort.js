@@ -39,13 +39,11 @@
 function mergeSortRecursive (array) {
   // base case
   if (array.length <= 1) return array;
-
   // divide and conquer!!
   let leftHalf = array.slice(0, array.length/2);
   let rightHalf = array.slice(array.length/2);
   let leftSorted = mergeSortRecursive(leftHalf);
   let rightSorted = mergeSortRecursive(rightHalf);
-
   // merge subarrays
   return merge(leftSorted, rightSorted);
 };
@@ -53,7 +51,6 @@ function mergeSortRecursive (array) {
 function mergeSortIterative (array) {
   // create array of subarrays with each element
   let splitArr = array.map(function(element) { return [element]; });
-
   // while there is more than one subarray
   while (splitArr.length > 1) {
     let result = [];
@@ -68,7 +65,6 @@ function mergeSortIterative (array) {
     splitArr = result;
   }
   return splitArr[0];
-
 };
 
 function merge(left, right) {
@@ -90,6 +86,7 @@ function merge(left, right) {
 }
 
 mergeSortRecursive([9, 4, 7, 1, 3, 5, 2]);
+
 /*
  * [9, 4, 7, 1, 3, 5, 2]
  * L[9, 4, 7], R[1, 3, 5, 2]
@@ -99,6 +96,7 @@ mergeSortRecursive([9, 4, 7, 1, 3, 5, 2]);
 */
 
 mergeSortIterative([9, 4, 7, 1, 3, 5, 2]);
+
 /*
  * [9], [4], [7], [1], [3], [5], [2]
  * [9, 4], [7, 1], [3, 5], [2]

@@ -12,6 +12,10 @@
  * [4, 1, 3, 8] find next highest one. swap highest number with array last element - 1
  * [3, 1, 4, 8] find next hightest one. swap highest number width array last elemet - 2
  * [1, 3, 4, 8] result array
+ *
+*/
+
+/*
  * Selects the smallest element in an array and pushes it into a new array
  * Way 2: without creating new array
  * original array [4, 6, 9, 3, 1, 5]
